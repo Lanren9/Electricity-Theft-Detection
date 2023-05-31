@@ -55,7 +55,7 @@ def ETD(train_x,train_y,test_x,test_y):
     #训练模型
     reduce_lr = ReduceLROnPlateau(monitor='val_loss', patience=3,factor=0.1,verbose=1,min_lr=0,mode='auto',epsilon=0.001,cooldown=0)
     EarlyStop=EarlyStopping(monitor='val_accuracy',min_delta=0.001,patience=5,verbose=1, mode='auto')
-    history=model.fit(train_x,train_y,batch_size=512,epochs=1,verbose=1,callbacks=[reduce_lr,EarlyStop],validation_data=(test_x,test_y))
+    history=model.fit(train_x,train_y,batch_size=512,epochs=30,verbose=1,callbacks=[reduce_lr,EarlyStop],validation_data=(test_x,test_y))
     #评估模型
     _, train_acc = model.evaluate(train_x, train_y,verbose=0,batch_size=512)
     _, test_acc = model.evaluate(test_x, test_y, verbose=0,batch_size=512)
